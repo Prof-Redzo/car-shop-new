@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 
 import carRoutes from "./routes/car-routes.js";
 
@@ -12,6 +13,8 @@ await mongoose.connect("mongodb://127.0.0.1:27017/carShop");
 
 connectToDb().then(() => console.log("Connected"))
 .catch((err) => console.log(err));
+
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   res.send("Working...");
