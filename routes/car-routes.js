@@ -1,18 +1,20 @@
 import express from "express";
+
+import authMiddleware from "../middlewares/auth-middleware.js";
 import { getCars, createCar, getCarById, updateCar, deleteCar, buyCar } from "../controllers/car-controller.js";
 
 const router = express.Router();
 
 router.get("/", getCars);
 
-router.post("/", createCar);
+router.post("/", authMiddleware, createCar);
 
-router.get("/:id", getCarById);
+router.get("/:id", authMiddleware, getCarById);
 
-router.put("/:id", updateCar);
+router.put("/:id", authMiddleware, updateCar);
 
-router.delete("/:id", deleteCar);
+router.delete("/:id", authMiddleware, deleteCar);
 
-router.post("/purchase/:id", buyCar);
+router.post("/purchase/:id", authMiddleware, buyCar);
 
 export default router;

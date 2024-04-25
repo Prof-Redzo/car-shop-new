@@ -9,6 +9,7 @@ const carSchema = new mongoose.Schema({
    sold: {type:Boolean, default: false},
    price: Number,
    created: {type: Date, default: Date.now},
+   owner: String
    //userId: Schema.Types.UUID,
 });
 
