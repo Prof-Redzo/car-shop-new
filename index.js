@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 
 import carRoutes from "./routes/car-routes.js";
+import authRoutes from "./routes/auth-routes.js";
+import userRoutes from "./routes/user-routes.js";
 
 const app = express();
 const PORT = 3000;
@@ -21,6 +23,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/cars", carRoutes);
+
+app.use("/api/auth", authRoutes);
+
+app.use("/api/users", userRoutes);
+
 
 app.listen(PORT, () => {
   console.log("Listening on port:" + PORT);
