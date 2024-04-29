@@ -1,16 +1,18 @@
 import express from "express";
 import mongoose from "mongoose";
+import "dotenv/config";
 import bodyParser from "body-parser";
 
 import carRoutes from "./routes/car-routes.js";
 import authRoutes from "./routes/auth-routes.js";
 import userRoutes from "./routes/user-routes.js";
 
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const connectToDb = async () => {
-await mongoose.connect("mongodb://127.0.0.1:27017/carShop");
+await mongoose.connect(`${process.env.DB_URL}/${process.env.DB_NAME}`);
 }
 
 connectToDb().then(() => console.log("Connected"))

@@ -10,7 +10,7 @@ export const registerUser = async (req, res) => {
     if(userExists) {
       return res.status(403).send("User with that email already exists");
     }
-   const hashedPassword = await bcrypt.hash(data.password, 10); 
+   const hashedPassword = await bcrypt.hash(data.password, process.env.SALT_ROUNDS); 
    
    data.password = hashedPassword;
 
@@ -41,7 +41,7 @@ export const login = async (req, res) => {
       id: user._id,
       email: user.email
     }
-    const token = jwt.sign(payload, "SUPERKEY123", {expiresIn: 60 * 60 });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 60 * 60 });
     res.status(200).send({ token });
   } else{
     return res.status(401).send("Wrong credentials");
