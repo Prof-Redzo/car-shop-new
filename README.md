@@ -1,5 +1,8 @@
 # car-shop-new
 
+## How to setup project
+## 1. npm install
+## 2. npm run dev
 
 ## Create a car shop system where all users will be able to view the cars that are on sale.
 ## Allow users the option to register. Allow users the option to log into the system.
